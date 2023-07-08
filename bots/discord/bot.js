@@ -7,7 +7,7 @@ const client = new Discord.Client();
 /**
  * Fichier stockant les informations variables du BOT
  */
-const config = require('./config');
+const config = require("./config");
 
 /**
  * Authentification du BOT grâce au token DISCORD
@@ -82,11 +82,12 @@ client.on("message", function(message) {
        */
       const ADMIN_CMD = ['user', 'calltest'];
       const USER_CMD = ['call', 'secret', 'help'];
+      const GEN_CMD = ['user', 'calltest','call', 'secret', 'help'];
 
       /**
        * Vérification de si la est admin où utilisateur, si non alors elle n'existe pas et retourne une erreur
        */
-      if(!ADMIN_CMD.includes(command) && !USER_CMD.includes(command)) {
+      if(!GEN_CMD.includes(command)) {
         embed(message, 'Bad command', 15158332, "This command doesn't exist. Please ask help to an admin.", user)
       }
 
@@ -100,11 +101,11 @@ client.on("message", function(message) {
        * Si l'utilisateur rentre une commande admin mais n'a pas les droits, alors un message disant qu'il n'as pas les droits est envoyé
        * Si il est admin et lance une commande Admin, alors l'éxécuter
        */
-      if(perms != ADMIN && ADMIN_CMD.includes(command)) {
-          embed(message, 'Permissions', 15158332, "You don't have the permissions to use this command. Please ask help to an admin.", user);
-      } else if(perms == ADMIN && ADMIN_CMD.includes(command)) {
+      if(GEN_CMD.includes(command)) {
           usercmd(all);
           call(all);
+          secret(all);
+          help(all);
       }
 
       /**
@@ -116,11 +117,9 @@ client.on("message", function(message) {
        * help permet d'aider n'importe qui, et secret est une fonction de sécuritée permettant de mettre admin n'importe qui grâce à un mot de passe de récupération
        */
       if(perms != USER && USER_CMD.includes(command) && perms != ADMIN && command != 'secret' && command != 'help') {
-          embed(message, 'Permissions', 15158332, "You don't have the permissions to use this command. Please ask help to an admin.", user);
+          // embed(message, 'Permissions', 15158332, "You don't have the permissions to use this command. Please ask help to an admin.", user);
       } else if(perms == USER || perms == ADMIN && USER_CMD.includes(command)) {
           call(all);
-          secret(all);
-          help(all);
       } else {
         secret(all);
         help(all);

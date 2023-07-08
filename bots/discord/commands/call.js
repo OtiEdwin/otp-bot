@@ -2,7 +2,7 @@ module.exports = function(m) {
     /**
      * Instanciation des dépendences de la fonction
      */
-    const axios = require('axios');
+    const axios = require("axios");
     const qs = require('qs');
 
     /**

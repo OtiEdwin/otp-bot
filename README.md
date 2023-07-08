@@ -94,7 +94,7 @@ Modify the config.js file
   
 Open the port 1337
 
-To check if everything works fine, I did a full test system. If your Twilio account is not upgrade, before the test, go to the /test/call.js file and modify the phone number line 122 with your phone numer.
+To check if everything works fine, I did a full test system. If your Twilio account is not upgraded, before the test, go to the /test/call.js file and modify the phone number line 122 with your phone numer.
 
 ```npm test```
 
